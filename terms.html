@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Digicreature Technologies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #667eea;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .last-updated {
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+
+        /* Content Section */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: -2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .content h2 {
+            color: #667eea;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 2.5rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f1f3f4;
+        }
+
+        .content h3 {
+            color: #333;
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .content p {
+            margin-bottom: 1rem;
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .content ul, .content ol {
+            margin: 1rem 0 1rem 2rem;
+            color: #555;
+        }
+
+        .content li {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .content strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        /* Warning boxes */
+        .warning-box {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            font-weight: 500;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        /* Contact Box */
+        .contact-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .contact-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .contact-box p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-box a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 2rem;
+            }
+            
+            .header-subtitle {
+                font-size: 1rem;
+            }
+            
+            .content {
+                margin: 1rem;
+                padding: 2rem 1.5rem;
+                border-radius: 15px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .toc h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .toc ul {
+            list-style: none;
+            margin: 0;
+        }
+
+        .toc li {
+            margin-bottom: 0.5rem;
+        }
+
+        .toc a {
+            color: #555;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">Digicreature Technologies</a>
+            <div class="nav-links">
+                <a href="index.html#services">Services</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="header">
+        <div class="header-content">
+            <h1 class="header-title">Terms of Service</h1>
+            <p class="header-subtitle">Clear guidelines for using our services and working together.</p>
+            <div class="last-updated">Last Updated: May 26, 2025</div>
+        </div>
+    </section>
+
+    <div class="content">
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <ul>
+                <li><a href="#acceptance">1. Acceptance of Terms</a></li>
+                <li><a href="#services">2. Description of Services</a></li>
+                <li><a href="#eligibility">3. Eligibility</a></li>
+                <li><a href="#accounts">4. User Accounts and Registration</a></li>
+                <li><a href="#use-of-services">5. Use of Services</a></li>
+                <li><a href="#payment">6. Payment Terms</a></li>
+                <li><a href="#intellectual-property">7. Intellectual Property Rights</a></li>
+                <li><a href="#privacy">8. Privacy and Data Protection</a></li>
+                <li><a href="#warranties">9. Warranties and Disclaimers</a></li>
+                <li><a href="#limitation">10. Limitation of Liability</a></li>
+                <li><a href="#indemnification">11. Indemnification</a></li>
+                <li><a href="#confidentiality">12. Confidentiality</a></li>
+                <li><a href="#termination">13. Term and Termination</a></li>
+                <li><a href="#force-majeure">14. Force Majeure</a></li>
+                <li><a href="#dispute-resolution">15. Dispute Resolution</a></li>
+                <li><a href="#governing-law">16. Governing Law</a></li>
+                <li><a href="#amendments">17. Amendments</a></li>
+                <li><a href="#severability">18. Severability</a></li>
+                <li><a href="#entire-agreement">19. Entire Agreement</a></li>
+                <li><a href="#notices">20. Notices</a></li>
+                <li><a href="#assignment">21. Assignment</a></li>
+                <li><a href="#contact">22. Contact Information</a></li>
+            </ul>
+        </div>
+
+        <h2 id="acceptance">1. Acceptance of Terms</h2>
+        <p>By accessing or using the services provided by Digicreature Technologies ("Company," "we," "our," or "us"), you ("Client," "you," or "your") agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our services.</p>
+
+        <div class="warning-box">
+            <strong>Important:</strong> These terms constitute a legally binding agreement. Please read them carefully before using our services.
+        </div>
+
+        <h2 id="services">2. Description of Services</h2>
+        <p>Digicreature Technologies provides technology solutions and services including but not limited to:</p>
+        <ul>
+            <li>Software development and consulting</li>
+            <li>Web and mobile application development</li>
+            <li>Digital transformation services</li>
+            <li>Technology consulting and support</li>
+            <li>E-commerce platform development</li>
+            <li>Digital marketing services</li>
+            <li>Other related services as agreed upon</li>
+        </ul>
+        <p>The specific scope of services will be detailed in separate service agreements or statements of work.</p>
+
+        <h2 id="eligibility">3. Eligibility</h2>
+        <p>To use our services, you must:</p>
+        <ul>
+            <li>Be at least 18 years of age or have legal capacity to enter into contracts</li>
+            <li>Have the authority to bind your organization (if applicable)</li>
+            <li>Provide accurate and complete information</li>
+            <li>Comply with all applicable laws and regulations</li>
+        </ul>
+        <p>We reserve the right to refuse service to anyone at our sole discretion.</p>
+
+        <h2 id="accounts">4. User Accounts and Registration</h2>
+        <p>Some services may require you to create an account. When creating an account, you agree to:</p>
+        <ul>
+            <li>Provide accurate, current, and complete information</li>
+            <li>Maintain and update your information as necessary</li>
+            <li>Keep your account credentials secure and confidential</li>
+            <li>Notify us immediately of any unauthorized use</li>
+            <li>Accept responsibility for all activities under your account</li>
+        </ul>
+
+        <h2 id="use-of-services">5. Use of Services</h2>
+        <h3>5.1 Permitted Use</h3>
+        <p>You may use our services for lawful business purposes in accordance with these Terms and any applicable service agreements.</p>
+
+        <h3>5.2 Prohibited Uses</h3>
+        <p>You agree not to:</p>
+        <ul>
+            <li>Use our services for any illegal or unauthorized purpose</li>
+            <li>Violate any applicable laws or regulations</li>
+            <li>Infringe upon the rights of others</li>
+            <li>Transmit harmful, offensive, or inappropriate content</li>
+            <li>Attempt to gain unauthorized access to our systems</li>
+            <li>Interfere with or disrupt our services</li>
+            <li>Use our services to compete with us</li>
+            <li>Reverse engineer or attempt to extract source code</li>
+        </ul>
+
+        <h2 id="payment">6. Payment Terms</h2>
+        <h3>6.1 Fees and Payment</h3>
+        <p>Payment terms will be specified in separate service agreements. Unless otherwise agreed:</p>
+        <ul>
+            <li>Invoices are due within 30 days of receipt</li>
+            <li>Late payments may incur interest charges</li>
+            <li>All fees are non-refundable unless otherwise specified</li>
+            <li>You are responsible for all taxes</li>
+        </ul>
+
+        <h3>6.2 Payment Methods</h3>
+        <p>We accept various payment methods including bank transfers, credit cards, and other methods as agreed upon.</p>
+
+        <div class="info-box">
+            <strong>Payment Notice:</strong> Failure to pay invoices on time may result in suspension or termination of services.
+        </div>
+
+        <h2 id="intellectual-property">7. Intellectual Property Rights</h2>
+        <h3>7.1 Our Intellectual Property</h3>
+        <p>We retain all rights, title, and interest in our proprietary technologies, methodologies, and intellectual property used in providing services.</p>
+
+        <h3>7.2 Client Intellectual Property</h3>
+        <p>You retain ownership of your pre-existing intellectual property. Any work product created specifically for you will be addressed in separate agreements.</p>
+
+        <h3>7.3 License Grant</h3>
+        <p>You grant us a limited license to use your intellectual property as necessary to provide our services.</p>
+
+        <h2 id="privacy">8. Privacy and Data Protection</h2>
+        <p>Your privacy is important to us. Our collection, use, and protection of your information is governed by our Privacy Policy, which is incorporated into these Terms by reference.</p>
+        <p>We implement appropriate security measures to protect your data, but cannot guarantee absolute security. You acknowledge the inherent risks of electronic communication and data storage.</p>
+
+        <h2 id="warranties">9. Warranties and Disclaimers</h2>
+        <h3>9.1 Limited Warranty</h3>
+        <p>We warrant that our services will be performed in a professional manner consistent with industry standards.</p>
+
+        <h3>9.2 Disclaimer</h3>
+        <p>EXCEPT AS EXPRESSLY STATED, OUR SERVICES ARE PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+
+        <h2 id="limitation">10. Limitation of Liability</h2>
+        <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW:</p>
+        <ul>
+            <li>OUR TOTAL LIABILITY SHALL NOT EXCEED THE AMOUNT PAID BY YOU FOR THE SPECIFIC SERVICE GIVING RISE TO THE CLAIM</li>
+            <li>WE SHALL NOT BE LIABLE FOR INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES</li>
+            <li>WE SHALL NOT BE LIABLE FOR LOSS OF PROFITS, DATA, OR BUSINESS OPPORTUNITIES</li>
+        </ul>
+
+        <h2 id="indemnification">11. Indemnification</h2>
+        <p>You agree to indemnify, defend, and hold harmless Digicreature Technologies and its officers, directors, employees, and agents from and against any claims, liabilities, damages, losses, and expenses arising out of or related to:</p>
+        <ul>
+            <li>Your use of our services</li>
+            <li>Your violation of these Terms</li>
+            <li>Your violation of any rights of another party</li>
+            <li>Your negligent or wrongful conduct</li>
+        </ul>
+
+        <h2 id="confidentiality">12. Confidentiality</h2>
+        <p>Both parties acknowledge that they may have access to confidential information. We agree to:</p>
+        <ul>
+            <li>Keep confidential information strictly confidential</li>
+            <li>Use confidential information solely for the purpose of providing/receiving services</li>
+            <li>Not disclose confidential information to third parties without written consent</li>
+            <li>Return or destroy confidential information upon request</li>
+        </ul>
+
+        <h2 id="termination">13. Term and Termination</h2>
+        <h3>13.1 Term</h3>
+        <p>These Terms remain in effect while you use our services or until terminated.</p>
+
+        <h3>13.2 Termination</h3>
+        <p>Either party may terminate these Terms:</p>
+        <ul>
+            <li>With 30 days written notice for convenience</li>
+            <li>Immediately for material breach that remains uncured after 15 days notice</li>
+            <li>Immediately if the other party becomes insolvent or files for bankruptcy</li>
+        </ul>
+
+        <h3>13.3 Effect of Termination</h3>
+        <p>Upon termination:</p>
+        <ul>
+            <li>All rights and obligations cease except those that survive termination</li>
+            <li>You must pay all outstanding fees</li>
+            <li>We may suspend or delete your account and data</li>
+            <li>Confidentiality obligations continue</li>
+        </ul>
+
+        <h2 id="force-majeure">14. Force Majeure</h2>
+        <p>Neither party shall be liable for any failure or delay in performance due to circumstances beyond their reasonable control, including but not limited to acts of God, natural disasters, war, terrorism, government actions, or pandemics.</p>
+
+        <h2 id="dispute-resolution">15. Dispute Resolution</h2>
+        <h3>15.1 Informal Resolution</h3>
+        <p>Before initiating formal proceedings, parties agree to attempt good faith negotiations to resolve any disputes.</p>
+
+        <h3>15.2 Arbitration</h3>
+        <p>If informal resolution fails, disputes shall be resolved through binding arbitration in accordance with the rules of the American Arbitration Association.</p>
+
+        <h2 id="governing-law">16. Governing Law</h2>
+        <p>These Terms shall be governed by and construed in accordance with the laws of [Your State/Country], without regard to conflict of law principles.</p>
+
+        <h2 id="amendments">17. Amendments</h2>
+        <p>We may modify these Terms at any time by posting the updated Terms on our website. Your continued use of our services after such posting constitutes acceptance of the modified Terms.</p>
+
+        <h2 id="severability">18. Severability</h2>
+        <p>If any provision of these Terms is found to be unenforceable, the remainder of these Terms shall remain in full force and effect.</p>
+
+        <h2 id="entire-agreement">19. Entire Agreement</h2>
+        <p>These Terms, together with any referenced policies and service agreements, constitute the entire agreement between the parties and supersede all prior agreements and understandings.</p>
+
+        <h2 id="notices">20. Notices</h2>
+        <p>All notices must be in writing and delivered to the addresses specified in our service agreements or to the contact information provided below.</p>
+
+        <h2 id="assignment">21. Assignment</h2>
+        <p>You may not assign these Terms without our prior written consent. We may assign these Terms in connection with a merger, acquisition, or sale of assets.</p>
+
+        <h2 id="contact">22. Contact Information</h2>
+        <div class="contact-box">
+            <h3>Questions About These Terms?</h3>
+            <p>If you have any questions about these Terms of Service, please contact us:</p>
+            <p><strong>Email:</strong> <a href="mailto:legal@digicreature.tech">legal@digicreature.tech</a></p>
+            <p><strong>Phone:</strong> <a href="tel:+1-555-0123">+1 (555) 012-3456</a></p>
+            <p><strong>Address:</strong> 123 Tech Street, Digital City, DC 12345</p>
+            <p><strong>Business Hours:</strong> Monday - Friday, 9:00 AM - 6:00 PM EST</p>
+        </div>
+
+        <div class="info-box">
+            <strong>Legal Notice:</strong> These Terms of Service are provided as a template and should be reviewed by qualified legal counsel before use. Laws vary by jurisdiction and specific business circumstances.
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Digicreature Technologies</div>
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+            <p>&copy; 2025 Digicreature Technologies. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
