@@ -394,6 +394,29 @@
             transform: translateY(0);
         }
 
+        /* Notification animations */
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero-content {
@@ -523,14 +546,14 @@
             
             <form class="contact-form fade-in">
                 <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Your Name" required>
-                    <input type="email" class="form-input" placeholder="Your Email" required>
+                    <input type="text" name="name" class="form-input" placeholder="Your Name" required>
+                    <input type="email" name="email" class="form-input" placeholder="Your Email" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Company Name">
-                    <input type="tel" class="form-input" placeholder="Phone Number">
+                    <input type="text" name="company" class="form-input" placeholder="Company Name">
+                    <input type="tel" name="phone" class="form-input" placeholder="Phone Number">
                 </div>
-                <textarea class="form-textarea" placeholder="Tell us about your project..." required></textarea>
+                <textarea name="message" class="form-textarea" placeholder="Tell us about your project..." required></textarea>
                 <button type="submit" class="submit-btn">Send Message</button>
             </form>
         </div>
@@ -551,6 +574,64 @@
     </footer>
 
     <script>
+        // Google Sheets Integration
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwrRpbBgQKgL9M9T3RzMogbArRxRvXlUj9roINRk4FtOEY-Ihfq46TycoOkKnspFhAZBQ/exec';
+        
+        // Send data to Google Sheets
+        async function sendToGoogleSheets(formData) {
+            const data = {
+                timestamp: new Date().toLocaleString(),
+                name: formData.get('name') || '',
+                email: formData.get('email') || '',
+                company: formData.get('company') || '',
+                phone: formData.get('phone') || '',
+                message: formData.get('message') || '',
+                source: 'Digicreature Landing Page'
+            };
+            
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                return { success: true };
+            } catch (error) {
+                console.error('Error sending to Google Sheets:', error);
+                return { success: false, error: error.message };
+            }
+        }
+        
+        // Show notification (keeping this for user feedback)
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'success' ? '#27ae60' : '#e74c3c'};
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                z-index: 10000;
+                font-weight: 500;
+                animation: slideInRight 0.3s ease-out;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.animation = 'slideOutRight 0.3s ease-out';
+                setTimeout(() => document.body.removeChild(notification), 300);
+            }, 3000);
+        }
+
         // Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -583,30 +664,56 @@
             observer.observe(el);
         });
 
-        // Form submission
+        // Form submission with Google Sheets integration
         document.querySelector('.contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Simple form validation and submission feedback
             const formData = new FormData(this);
             const submitBtn = this.querySelector('.submit-btn');
             const originalText = submitBtn.textContent;
             
+            // Validate required fields
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
+            
+            if (!name || !email || !message) {
+                showNotification('Please fill in all required fields.', 'error');
+                return;
+            }
+            
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
             
-            // Simulate form submission
-            setTimeout(() => {
-                submitBtn.textContent = 'Message Sent!';
-                submitBtn.style.background = 'linear-gradient(45deg, #27ae60, #2ecc71)';
+            // Send to Google Sheets
+            sendToGoogleSheets(formData).then(result => {
+                if (result.success) {
+                    submitBtn.textContent = 'Message Sent!';
+                    submitBtn.style.background = 'linear-gradient(45deg, #27ae60, #2ecc71)';
+                    showNotification('Thank you! Your message has been sent successfully.', 'success');
+                    
+                    // Reset form after delay
+                    setTimeout(() => {
+                        submitBtn.textContent = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
+                        this.reset();
+                    }, 2000);
+                } else {
+                    throw new Error(result.error || 'Failed to send message');
+                }
+            }).catch(error => {
+                console.error('Error:', error);
+                submitBtn.textContent = 'Try Again';
+                submitBtn.style.background = 'linear-gradient(45deg, #e74c3c, #c0392b)';
+                showNotification('Failed to send message. Please try again.', 'error');
                 
                 setTimeout(() => {
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
                     submitBtn.style.background = 'linear-gradient(45deg, #667eea, #764ba2)';
-                    this.reset();
-                }, 2000);
-            }, 1000);
+                }, 3000);
+            });
         });
 
         // Navbar background on scroll
