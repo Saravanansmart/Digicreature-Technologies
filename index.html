@@ -149,6 +149,41 @@
             display: flex;
             gap: 2rem;
         }
+        .services {
+            margin-top: 2rem; /* Add margin to push services section down */
+        }
+
+        @media (max-width: 768px) {
+            .services {
+                margin-top: 1rem; /* Adjust for mobile */
+                padding: 3rem 1rem; /* Reduce padding for mobile */
+            }
+        }
+        .nav {
+            z-index: 1000; /* Already set, but confirm it’s high enough */
+        }
+
+        .hero {
+            z-index: 1; /* Ensure hero is below nav but above content */
+        }
+
+        .services {
+            position: relative;
+            z-index: 2; /* Ensure services section is above hero */
+        }
+        @media (max-width: 768px) {
+            .contact {
+                padding: 3rem 1rem;
+            }
+
+            .contact-form {
+                margin-top: 2rem;
+            }
+
+            .footer {
+                padding: 2rem 1rem;
+            }
+        }
 
         .nav-links a {
             text-decoration: none;
@@ -159,6 +194,23 @@
 
         .nav-links a:hover {
             color: #667eea;
+        }
+        body {
+            padding-top: 70px; /* Adjust based on nav height */
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                padding: 0.5rem 1rem; /* Reduce padding for mobile */
+            }
+
+            .nav-logo {
+                font-size: 1.2rem; /* Smaller logo */
+            }
+
+            .nav-links {
+                display: none; /* Already in your code, ensures links are hidden */
+            }
         }
 
         /* Services Section */
@@ -662,9 +714,11 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const navHeight = document.querySelector('.nav').offsetHeight;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
                     });
                 }
             });
