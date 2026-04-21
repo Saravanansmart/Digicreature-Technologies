@@ -63,8 +63,10 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: #111827;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             z-index: 1000;
             padding: 1rem 2rem;
             transition: all 0.3s ease;
@@ -100,9 +102,24 @@
             color: #10b981;
         }
 
+        .nav-cta {
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            color: #fff;
+            padding: 0.55rem 0.95rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(249, 115, 22, 0.35);
+        }
+
         /* Hero Section */
         .hero {
-            background: #111827;
+            background: radial-gradient(circle at top, #374151 0%, #111827 55%, #0b1220 100%);
             min-height: 80vh;
             display: flex;
             align-items: center;
@@ -114,6 +131,17 @@
         .hero-content {
             max-width: 800px;
             padding: 2rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: #6ee7b7;
+            border-radius: 999px;
+            padding: 0.35rem 0.8rem;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
         }
 
         .logo {
@@ -134,6 +162,19 @@
             margin-bottom: 2rem;
         }
 
+        .hero-description {
+            color: #d1d5db;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
         .cta-button {
             background: #10b981;
             color: #ffffff;
@@ -148,6 +189,55 @@
         .cta-button:hover {
             background: #059669;
             transform: translateY(-2px);
+        }
+
+        .secondary-button {
+            border: 1px solid #6b7280;
+            background: transparent;
+            color: #e5e7eb;
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .secondary-button:hover {
+            border-color: #f97316;
+            color: #fb923c;
+        }
+
+        .metrics {
+            padding: 2rem;
+            background: #0f172a;
+        }
+
+        .metrics-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1rem;
+        }
+
+        .metric-card {
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .metric-value {
+            display: block;
+            color: #34d399;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.35rem;
+        }
+
+        .metric-label {
+            color: #9ca3af;
+            font-size: 0.95rem;
         }
 
         /* Services Section */
@@ -264,6 +354,34 @@
         .contact {
             padding: 4rem 2rem;
             background: #1f2937;
+        }
+
+        .process {
+            padding: 4rem 2rem;
+            background: #0b1220;
+        }
+
+        .process-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            margin-top: 2rem;
+        }
+
+        .process-step {
+            background: #111827;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .process-step h3 {
+            color: #f9fafb;
+            margin-bottom: 0.5rem;
+        }
+
+        .process-step p {
+            color: #9ca3af;
         }
 
         .contact-content {
@@ -420,6 +538,11 @@
                 gap: 1.5rem;
             }
 
+            .metrics-grid,
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
             .form-group {
                 grid-template-columns: 1fr;
             }
@@ -445,8 +568,10 @@
             <div class="nav-logo">Digicreature Technologies</div>
             <nav class="nav-links" aria-label="Main navigation">
                 <a href="#services">Services</a>
+                <a href="#process">Process</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
+                <a href="#contact" class="nav-cta">Get Proposal</a>
             </nav>
         </div>
     </header>
@@ -454,18 +579,44 @@
     <main>
         <section class="hero">
             <div class="hero-content">
+                <span class="hero-badge">Result-driven digital partner</span>
                 <h1 class="logo">Digicreature Technologies</h1>
                 <p class="tagline">Empowering Your Digital Journey</p>
-                <button class="cta-button" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">
-                    Explore Services
-                </button>
+                <p class="hero-description">We design, build, and scale high-converting e-commerce experiences with focused SEO and digital growth systems.</p>
+                <div class="hero-actions">
+                    <button class="cta-button" onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">
+                        Explore Services
+                    </button>
+                    <a href="#contact" class="secondary-button">Book a Discovery Call</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="metrics" aria-label="Business impact highlights">
+            <div class="metrics-grid">
+                <article class="metric-card">
+                    <span class="metric-value">120+</span>
+                    <span class="metric-label">Web & Storefront launches</span>
+                </article>
+                <article class="metric-card">
+                    <span class="metric-value">40%</span>
+                    <span class="metric-label">Average conversion uplift</span>
+                </article>
+                <article class="metric-card">
+                    <span class="metric-value">6+</span>
+                    <span class="metric-label">Years of digital delivery</span>
+                </article>
+                <article class="metric-card">
+                    <span class="metric-value">24/7</span>
+                    <span class="metric-label">Performance monitoring</span>
+                </article>
             </div>
         </section>
 
         <section id="services" class="services">
             <div class="container">
                 <h2 class="section-title fade-in">Our Services</h2>
-                <p class="section-subtitle fade-in">Tailored digital solutions for your success</p>
+                <p class="section-subtitle fade-in">Modern, measurable, and scalable solutions for ambitious brands.</p>
                 
                 <div class="services-grid">
                     <div class="service-card fade-in">
@@ -528,6 +679,27 @@
             </div>
         </section>
 
+        <section id="process" class="process">
+            <div class="container">
+                <h2 class="section-title fade-in">Our Delivery Framework</h2>
+                <p class="section-subtitle fade-in">A clear process that keeps strategy, execution, and growth in sync.</p>
+                <div class="process-grid">
+                    <article class="process-step fade-in">
+                        <h3>01. Discovery & Strategy</h3>
+                        <p>We identify your goals, competitors, and growth opportunities to build a focused roadmap.</p>
+                    </article>
+                    <article class="process-step fade-in">
+                        <h3>02. Build & Launch</h3>
+                        <p>Our team executes design, development, and campaign setup with speed and technical precision.</p>
+                    </article>
+                    <article class="process-step fade-in">
+                        <h3>03. Optimize & Scale</h3>
+                        <p>We continuously improve conversion, acquisition, and retention based on real performance data.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <section id="contact" class="contact">
             <div class="contact-content">
                 <h2 class="section-title fade-in">Get in Touch</h2>
@@ -554,12 +726,13 @@
             <div class="footer-logo">Digicreature Technologies</div>
             <nav class="footer-links" aria-label="Footer navigation">
                 <a href="#services">Services</a>
+                <a href="#process">Process</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
                 <a href="privacy.html">Privacy Policy</a>
                 <a href="terms.html">Terms of Service</a>
             </nav>
-            <p>© 2025 Digicreature Technologies. All rights reserved.</p>
+            <p>© 2026 Digicreature Technologies. All rights reserved.</p>
         </div>
     </footer>
 
