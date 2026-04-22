@@ -51,10 +51,10 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', 'Arial', sans-serif;
             line-height: 1.7;
             color: #e5e7eb;
-            background: #1f2937;
+            background: linear-gradient(180deg, #0f172a 0%, #111827 45%, #1f2937 100%);
             overflow-x: hidden;
         }
 
@@ -78,17 +78,39 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
         }
 
         .nav-logo {
-            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            color: #f97316; /* Changed to orange */
+            color: #f9fafb;
+            white-space: nowrap;
+        }
+
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            display: grid;
+            place-items: center;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
         }
 
         .nav-links {
             display: flex;
+            align-items: center;
             gap: 1.5rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            padding: 0.5rem 1.1rem;
         }
 
         .nav-links a {
@@ -243,7 +265,7 @@
         /* Services Section */
         .services {
             padding: 4rem 2rem;
-            background: #1f2937;
+            background: linear-gradient(180deg, #111827 0%, #1f2937 100%);
         }
 
         .container {
@@ -273,10 +295,11 @@
         }
 
         .service-card {
-            background: #374151;
+            background: linear-gradient(180deg, rgba(55, 65, 81, 0.95), rgba(31, 41, 55, 0.95));
             padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 12px 35px rgba(2, 6, 23, 0.35);
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
@@ -328,7 +351,7 @@
         /* About Section */
         .about {
             padding: 4rem 2rem;
-            background: #111827;
+            background: #0f172a;
         }
 
         .about-content {
@@ -447,39 +470,67 @@
 
         /* Footer */
         .footer {
-            background: #111827;
+            background: linear-gradient(180deg, #0b1220 0%, #020617 100%);
             color: #e5e7eb;
-            text-align: center;
-            padding: 2rem;
+            padding: 3rem 2rem 1.5rem;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            text-align: left;
         }
 
         .footer-logo {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 600;
+            margin-bottom: 0.6rem;
+            color: #fb923c;
+        }
+
+        .footer-about {
+            color: #94a3b8;
+            max-width: 420px;
+        }
+
+        .footer-heading {
+            font-size: 1rem;
+            color: #f8fafc;
             margin-bottom: 0.8rem;
-            color: #f97316; /* Changed to orange */
+            font-weight: 600;
         }
 
-        .footer-links {
+        .footer-links,
+        .policy-links {
             display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
+            flex-direction: column;
+            gap: 0.45rem;
         }
 
-        .footer-links a {
+        .footer-links a,
+        .policy-links a {
             color: #e5e7eb;
             text-decoration: none;
             transition: color 0.3s ease;
+            width: fit-content;
         }
 
-        .footer-links a:hover {
+        .footer-links a:hover,
+        .policy-links a:hover {
             color: #10b981;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 1.5rem auto 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1rem;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.95rem;
         }
 
         /* Animations */
@@ -504,7 +555,7 @@
             }
 
             .nav-logo {
-                font-size: 1.4rem;
+                font-size: 1rem;
             }
 
             .nav-links {
@@ -555,9 +606,13 @@
                 padding: 1.5rem 1rem;
             }
 
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: left;
+            }
+
             .footer-links {
-                flex-direction: column;
-                gap: 0.8rem;
+                gap: 0.6rem;
             }
         }
     </style>
@@ -565,7 +620,10 @@
 <body>
     <header class="nav">
         <div class="nav-content">
-            <div class="nav-logo">Digicreature Technologies</div>
+            <div class="nav-logo">
+                <span class="brand-mark">D</span>
+                <span>Digicreature Technologies</span>
+            </div>
             <nav class="nav-links" aria-label="Main navigation">
                 <a href="#services">Services</a>
                 <a href="#process">Process</a>
@@ -573,6 +631,9 @@
                 <a href="#contact">Contact</a>
                 <a href="#contact" class="nav-cta">Get Proposal</a>
             </nav>
+            <div class="nav-right">
+                <a href="#contact" class="nav-cta">Get Proposal</a>
+            </div>
         </div>
     </header>
 
@@ -734,6 +795,7 @@
             </nav>
             <p>© 2026 Digicreature Technologies. All rights reserved.</p>
         </div>
+        <div class="footer-bottom">© 2026 Digicreature Technologies. All rights reserved.</div>
     </footer>
 
     <script>
