@@ -136,17 +136,39 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 1rem;
         }
 
         .nav-logo {
-            font-size: 1.6rem;
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            color: #f97316; /* Changed to orange */
+            color: #f9fafb;
+            white-space: nowrap;
+        }
+
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #f97316, #fb923c);
+            display: grid;
+            place-items: center;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
         }
 
         .nav-links {
             display: flex;
+            align-items: center;
             gap: 1.5rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            padding: 0.5rem 1.1rem;
         }
 
         .nav-links a {
@@ -158,6 +180,12 @@
 
         .nav-links a:hover {
             color: #10b981;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
         }
 
         .nav-cta {
@@ -620,7 +648,7 @@
             }
 
             .nav-logo {
-                font-size: 1.4rem;
+                font-size: 1rem;
             }
 
             .nav-links {
@@ -682,7 +710,10 @@
 <body>
     <header class="nav">
         <div class="nav-content">
-            <div class="nav-logo">Digicreature Technologies</div>
+            <div class="nav-logo">
+                <span class="brand-mark">D</span>
+                <span>Digicreature Technologies</span>
+            </div>
             <nav class="nav-links" aria-label="Main navigation">
                 <a href="#services">Services</a>
                 <a href="#process">Process</a>
@@ -690,8 +721,10 @@
                 <a href="#faq">FAQ</a>
                 <a href="#about">About</a>
                 <a href="#contact">Contact</a>
-                <a href="#contact" class="nav-cta">Get Proposal</a>
             </nav>
+            <div class="nav-right">
+                <a href="#contact" class="nav-cta">Get Proposal</a>
+            </div>
         </div>
     </header>
 
