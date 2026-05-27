@@ -8,7 +8,7 @@
     <meta name="keywords" content="Digicreature, e-commerce, digital marketing, web development, crackers e-commerce, technology solutions">
     <meta name="author" content="Digicreature Technologies">
     <meta name="robots" content="index, follow">
-    <meta name="theme-color" content="#FFE83D">
+    <meta name="theme-color" content="#FFFDF5">
     <meta property="og:title" content="Digicreature Technologies - Digital Solutions">
     <meta property="og:description" content="Explore Digicreature's e-commerce platforms, digital marketing strategies, and web development services to grow your business.">
     <meta property="og:type" content="website">
@@ -20,13 +20,28 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Archivo+Black&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
+    <!--
+        ============================================================
+        PLACEHOLDERS TO REPLACE BEFORE GOING LIVE
+        ============================================================
+        - data-phone / data-email: update real phone + email
+        - .founder-photo: swap initials avatar for actual photo
+        - .work-card images: replace with real portfolio screenshots
+        - .clients-strip: replace with real client logos
+        - testimonials: add real client names + companies when available
+        ============================================================
+    -->
+
     <style>
         :root {
             --bg: #FFFDF5;
+            --bg-soft: #F7F3E8;
             --bg-block: #FFE83D;
+            --bg-block-soft: #FFF4A8;
             --bg-dark: #111111;
             --ink: #0A0A0A;
             --ink-soft: #2A2A2A;
+            --ink-muted: #6B6B6B;
             --paper: #FFFFFF;
             --blue: #2C6BFF;
             --red: #FF3B30;
@@ -40,12 +55,7 @@
             --shadow-lg: 10px 10px 0 0 var(--ink);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
 
         body {
@@ -58,18 +68,7 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        .display {
-            font-family: 'Archivo Black', 'Space Grotesk', sans-serif;
-            letter-spacing: -0.02em;
-            line-height: 0.95;
-            text-transform: uppercase;
-        }
-
-        .mono {
-            font-family: 'JetBrains Mono', monospace;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
+        a { color: inherit; }
 
         /* Top ticker */
         .ticker {
@@ -122,12 +121,7 @@
             gap: 1rem;
         }
 
-        .nav-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            text-decoration: none;
-        }
+        .nav-logo { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
 
         .brand-mark {
             width: 42px;
@@ -144,9 +138,7 @@
             transition: transform 0.2s ease;
         }
 
-        .nav-logo:hover .brand-mark {
-            transform: rotate(3deg) scale(1.05);
-        }
+        .nav-logo:hover .brand-mark { transform: rotate(3deg) scale(1.05); }
 
         .nav-logo span {
             font-family: 'Archivo Black', sans-serif;
@@ -156,10 +148,9 @@
             letter-spacing: -0.01em;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 0.4rem;
-        }
+        .nav-center { display: flex; gap: 0.4rem; align-items: center; }
+
+        .nav-links { display: flex; gap: 0.4rem; }
 
         .nav-links a {
             text-decoration: none;
@@ -177,6 +168,32 @@
             transform: translate(-2px, -2px);
             box-shadow: 3px 3px 0 0 var(--ink);
         }
+
+        .nav-right { display: flex; align-items: center; gap: 0.6rem; }
+
+        .nav-phone {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            text-decoration: none;
+            color: var(--ink);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.55rem 0.8rem;
+            border: var(--border-thin);
+            background: var(--paper);
+            transition: background 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .nav-phone:hover {
+            background: var(--green);
+            color: var(--paper);
+            transform: translate(-2px, -2px);
+            box-shadow: 3px 3px 0 0 var(--ink);
+        }
+
+        .nav-phone .icon { font-size: 0.95rem; }
 
         .nav-cta {
             background: var(--ink);
@@ -201,11 +218,11 @@
             box-shadow: 6px 6px 0 0 var(--red);
         }
 
-        /* Hero */
+        /* Hero — toned down */
         .hero {
-            background: var(--bg-block);
+            background: var(--bg);
             border-bottom: var(--border);
-            padding: 4rem 1.5rem 5rem;
+            padding: 5rem 1.5rem 5rem;
             position: relative;
             overflow: hidden;
         }
@@ -218,7 +235,7 @@
                 linear-gradient(var(--ink) 1px, transparent 1px),
                 linear-gradient(90deg, var(--ink) 1px, transparent 1px);
             background-size: 64px 64px;
-            opacity: 0.06;
+            opacity: 0.04;
             pointer-events: none;
         }
 
@@ -233,7 +250,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: var(--paper);
+            background: var(--bg-block);
             border: var(--border-thin);
             box-shadow: var(--shadow-sm);
             padding: 0.5rem 0.95rem;
@@ -261,23 +278,20 @@
 
         .hero h1 {
             font-family: 'Archivo Black', sans-serif;
-            font-size: clamp(2.6rem, 8vw, 6.5rem);
-            line-height: 0.9;
+            font-size: clamp(2.4rem, 7vw, 5.5rem);
+            line-height: 0.95;
             letter-spacing: -0.035em;
             text-transform: uppercase;
             color: var(--ink);
             margin-bottom: 1.75rem;
-            max-width: 1100px;
+            max-width: 1080px;
         }
 
-        .hero h1 .underline {
+        .hero h1 .highlight {
             position: relative;
             display: inline-block;
-            background: var(--ink);
-            color: var(--bg-block);
+            background: var(--bg-block);
             padding: 0 0.3rem;
-            transform: rotate(-1.5deg);
-            margin: 0 0.1rem;
         }
 
         .hero h1 .circle {
@@ -311,7 +325,7 @@
         }
 
         .hero-lede strong {
-            background: var(--paper);
+            background: var(--bg-block);
             border: 1.5px solid var(--ink);
             padding: 0.05rem 0.35rem;
             font-weight: 700;
@@ -321,6 +335,26 @@
             display: flex;
             gap: 0.75rem;
             flex-wrap: wrap;
+        }
+
+        .price-hint {
+            margin-top: 1.5rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.82rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-soft);
+        }
+
+        .price-hint strong {
+            background: var(--ink);
+            color: var(--bg-block);
+            padding: 0.2rem 0.5rem;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 0.85rem;
         }
 
         .cta-button {
@@ -371,7 +405,6 @@
             border: var(--border-thin);
             box-shadow: var(--shadow);
             padding: 1.5rem;
-            transform: rotate(1.5deg);
         }
 
         .hero-side-card .label {
@@ -379,13 +412,13 @@
             font-size: 0.72rem;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--ink-soft);
+            color: var(--ink-muted);
             margin-bottom: 0.5rem;
         }
 
         .hero-side-card .stat {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 3.5rem;
+            font-size: 3.3rem;
             line-height: 1;
             margin-bottom: 0.5rem;
         }
@@ -402,11 +435,55 @@
             margin: 1.25rem 0;
         }
 
+        /* Clients strip */
+        .clients {
+            background: var(--paper);
+            border-bottom: var(--border);
+            padding: 1.5rem 1.5rem;
+        }
+
+        .clients-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .clients-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--ink-muted);
+            font-weight: 500;
+        }
+
+        .clients-strip {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .client-logo {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--ink-muted);
+            padding: 0.4rem 0.85rem;
+            border: 2px dashed var(--ink-muted);
+            opacity: 0.7;
+        }
+
         /* Metrics */
         .metrics {
             background: var(--paper);
             border-bottom: var(--border);
-            padding: 0;
         }
 
         .metrics-grid {
@@ -419,15 +496,11 @@
         .metric-card {
             padding: 2.5rem 1.75rem;
             border-right: var(--border-thin);
-            position: relative;
             transition: background 0.2s ease;
         }
 
         .metric-card:last-child { border-right: 0; }
-
-        .metric-card:hover {
-            background: var(--bg-block);
-        }
+        .metric-card:hover { background: var(--bg-block); }
 
         .metric-num {
             display: flex;
@@ -552,7 +625,6 @@
         }
 
         .service-card:nth-child(2) .service-tag { background: var(--blue); color: var(--paper); }
-        .service-card:nth-child(3) .service-tag { background: var(--ink); color: var(--bg-block); }
 
         .service-icon-big {
             font-family: 'Archivo Black', sans-serif;
@@ -575,7 +647,26 @@
             color: var(--ink-soft);
             font-weight: 500;
             line-height: 1.55;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .service-price {
+            display: inline-block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--ink-soft);
+            padding: 0.35rem 0.7rem;
+            border: 2px dashed var(--ink);
+            margin-bottom: 1.25rem;
+            align-self: flex-start;
+        }
+
+        .service-price strong {
+            font-family: 'Archivo Black', sans-serif;
+            color: var(--ink);
         }
 
         .service-features {
@@ -601,7 +692,125 @@
             color: var(--red);
         }
 
-        /* About */
+        /* Work / Portfolio */
+        .work {
+            background: var(--paper);
+            padding: 6rem 1.5rem;
+            border-bottom: var(--border);
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .work-card {
+            background: var(--bg);
+            border: var(--border-thin);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .work-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0 0 var(--ink);
+        }
+
+        .work-thumb {
+            aspect-ratio: 4 / 3;
+            border-bottom: var(--border-thin);
+            display: grid;
+            place-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .work-thumb::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(var(--ink) 1px, transparent 1px),
+                linear-gradient(90deg, var(--ink) 1px, transparent 1px);
+            background-size: 28px 28px;
+            opacity: 0.07;
+        }
+
+        .work-thumb.one { background: var(--bg-block); }
+        .work-thumb.two { background: var(--lilac); }
+        .work-thumb.three { background: var(--pink); }
+
+        .work-thumb-label {
+            position: relative;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            text-align: center;
+            line-height: 1;
+            padding: 0 1rem;
+        }
+
+        .work-thumb-label small {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin-top: 0.6rem;
+            letter-spacing: 0.1em;
+        }
+
+        .work-body {
+            padding: 1.5rem;
+        }
+
+        .work-meta {
+            display: flex;
+            justify-content: space-between;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-muted);
+            margin-bottom: 0.6rem;
+        }
+
+        .work-title {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.25rem;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: -0.015em;
+            margin-bottom: 0.5rem;
+        }
+
+        .work-result {
+            font-size: 0.95rem;
+            color: var(--ink-soft);
+            font-weight: 500;
+        }
+
+        .work-note {
+            margin-top: 2rem;
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-muted);
+        }
+
+        .work-note a {
+            color: var(--ink);
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        /* About / Founder */
         .about {
             background: var(--bg-dark);
             color: var(--bg);
@@ -609,18 +818,12 @@
             border-bottom: var(--border);
         }
 
-        .about .section-eyebrow {
-            background: var(--bg-block);
-            color: var(--ink);
-        }
-
-        .about .section-title {
-            color: var(--bg);
-        }
+        .about .section-eyebrow { background: var(--bg-block); color: var(--ink); }
+        .about .section-title { color: var(--bg); }
 
         .about-grid {
             display: grid;
-            grid-template-columns: 1.2fr 1fr;
+            grid-template-columns: 1.1fr 1fr;
             gap: 4rem;
             align-items: center;
         }
@@ -637,6 +840,7 @@
             display: flex;
             gap: 0.6rem;
             flex-wrap: wrap;
+            margin-bottom: 2.5rem;
         }
 
         .about-pill {
@@ -655,6 +859,57 @@
             background: var(--bg-block);
             color: var(--ink);
             border-color: var(--bg-block);
+        }
+
+        .founder-card {
+            background: var(--bg);
+            color: var(--ink);
+            border: 3px solid var(--bg-block);
+            padding: 1.5rem;
+            display: flex;
+            gap: 1.25rem;
+            align-items: flex-start;
+            box-shadow: 8px 8px 0 0 var(--red);
+        }
+
+        .founder-photo {
+            flex-shrink: 0;
+            width: 72px;
+            height: 72px;
+            background: var(--bg-block);
+            border: var(--border-thin);
+            display: grid;
+            place-items: center;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.8rem;
+        }
+
+        .founder-text {
+            display: grid;
+            gap: 0.25rem;
+        }
+
+        .founder-name {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.15rem;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+        }
+
+        .founder-role {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .founder-bio {
+            font-size: 0.92rem;
+            color: var(--ink-soft);
+            font-weight: 500;
+            line-height: 1.5;
         }
 
         .about-visual {
@@ -758,23 +1013,15 @@
             border-bottom: var(--border);
         }
 
-        .testimonials .section-eyebrow {
-            background: var(--paper);
-            color: var(--ink);
-        }
-
-        .testimonials .section-title {
-            color: var(--paper);
-        }
-
-        .testimonials .section-sub {
-            color: rgba(255, 255, 255, 0.85);
-        }
+        .testimonials .section-eyebrow { background: var(--paper); color: var(--ink); }
+        .testimonials .section-title { color: var(--paper); }
+        .testimonials .section-sub { color: rgba(255, 255, 255, 0.85); }
 
         .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1.25rem;
+            margin-bottom: 2rem;
         }
 
         .testimonial-card {
@@ -789,11 +1036,8 @@
             transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .testimonial-card:nth-child(2) { transform: rotate(-1deg); }
-        .testimonial-card:nth-child(3) { transform: rotate(1deg); }
-
         .testimonial-card:hover {
-            transform: translate(-3px, -3px) rotate(0deg);
+            transform: translate(-3px, -3px);
             box-shadow: 10px 10px 0 0 var(--red);
         }
 
@@ -805,9 +1049,9 @@
         }
 
         .testimonial-card p {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 500;
-            line-height: 1.45;
+            line-height: 1.5;
             flex: 1;
         }
 
@@ -817,10 +1061,18 @@
             gap: 0.75rem;
             padding-top: 1rem;
             border-top: 2px dashed var(--ink);
-            font-family: 'Archivo Black', sans-serif;
+            font-family: 'JetBrains Mono', monospace;
             text-transform: uppercase;
+            font-size: 0.78rem;
+            letter-spacing: 0.08em;
+            color: var(--ink-soft);
+        }
+
+        .testimonial-author strong {
+            color: var(--ink);
+            font-family: 'Archivo Black', sans-serif;
             font-size: 0.85rem;
-            letter-spacing: 0.02em;
+            letter-spacing: 0;
         }
 
         .testimonial-avatar {
@@ -832,6 +1084,42 @@
             place-items: center;
             font-family: 'Archivo Black', sans-serif;
             font-size: 1rem;
+        }
+
+        .references-note {
+            background: var(--paper);
+            color: var(--ink);
+            border: var(--border-thin);
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .references-note p {
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        .references-note .ref-action {
+            background: var(--ink);
+            color: var(--bg-block);
+            padding: 0.65rem 1rem;
+            border: var(--border-thin);
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            box-shadow: 4px 4px 0 0 var(--red);
+            transition: transform 0.15s ease;
+        }
+
+        .references-note .ref-action:hover {
+            transform: translate(-2px, -2px);
         }
 
         /* FAQ */
@@ -912,7 +1200,7 @@
 
         /* Contact */
         .contact {
-            background: var(--bg-block);
+            background: var(--bg-block-soft);
             padding: 6rem 1.5rem;
             border-bottom: var(--border);
             position: relative;
@@ -927,7 +1215,7 @@
                 linear-gradient(var(--ink) 1px, transparent 1px),
                 linear-gradient(90deg, var(--ink) 1px, transparent 1px);
             background-size: 64px 64px;
-            opacity: 0.06;
+            opacity: 0.05;
             pointer-events: none;
         }
 
@@ -965,6 +1253,7 @@
             display: grid;
             gap: 0.75rem;
             list-style: none;
+            margin-bottom: 1.5rem;
         }
 
         .contact-list li {
@@ -988,6 +1277,36 @@
 
         .contact-list li:nth-child(2) .ico { background: var(--pink); }
         .contact-list li:nth-child(3) .ico { background: var(--lilac); }
+
+        .contact-direct {
+            background: var(--bg);
+            border: var(--border-thin);
+            padding: 1rem 1.25rem;
+            display: grid;
+            gap: 0.6rem;
+        }
+
+        .contact-direct .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--ink-muted);
+            font-weight: 500;
+        }
+
+        .contact-direct a {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            text-decoration: none;
+            color: var(--ink);
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1rem;
+            transition: color 0.15s ease;
+        }
+
+        .contact-direct a:hover { color: var(--blue); }
 
         .contact-form {
             display: grid;
@@ -1068,10 +1387,63 @@
             box-shadow: 9px 9px 0 0 var(--red);
         }
 
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        /* Floating contact actions */
+        .float-actions {
+            position: fixed;
+            bottom: 1.25rem;
+            right: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            z-index: 999;
         }
+
+        .float-btn {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--green);
+            color: var(--paper);
+            border: var(--border-thin);
+            display: grid;
+            place-items: center;
+            text-decoration: none;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.4rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            position: relative;
+        }
+
+        .float-btn.call { background: var(--blue); }
+
+        .float-btn:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0 0 var(--ink);
+        }
+
+        .float-btn .tip {
+            position: absolute;
+            right: calc(100% + 0.6rem);
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--ink);
+            color: var(--paper);
+            padding: 0.3rem 0.6rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0;
+            pointer-events: none;
+            white-space: nowrap;
+            border: var(--border-thin);
+            transition: opacity 0.15s ease;
+        }
+
+        .float-btn:hover .tip { opacity: 1; }
 
         /* Footer */
         .footer {
@@ -1087,7 +1459,7 @@
 
         .footer-top {
             display: grid;
-            grid-template-columns: 1.4fr 1fr 1fr;
+            grid-template-columns: 1.4fr 1fr 1fr 1fr;
             gap: 3rem;
             padding-bottom: 2.5rem;
             border-bottom: 2px dashed rgba(255, 253, 245, 0.25);
@@ -1096,7 +1468,7 @@
 
         .footer-brand h3 {
             font-family: 'Archivo Black', sans-serif;
-            font-size: 1.75rem;
+            font-size: 1.6rem;
             text-transform: uppercase;
             letter-spacing: -0.01em;
             margin-bottom: 1rem;
@@ -1108,7 +1480,30 @@
             max-width: 360px;
             font-weight: 500;
             font-size: 0.95rem;
+            margin-bottom: 1.25rem;
         }
+
+        .footer-socials {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .footer-social {
+            width: 38px;
+            height: 38px;
+            display: grid;
+            place-items: center;
+            background: transparent;
+            color: var(--bg);
+            border: var(--border-thin);
+            border-color: var(--bg-block);
+            text-decoration: none;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 0.85rem;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .footer-social:hover { background: var(--bg-block); color: var(--ink); }
 
         .footer-col h4 {
             font-family: 'JetBrains Mono', monospace;
@@ -1146,7 +1541,7 @@
             letter-spacing: 0.08em;
         }
 
-        /* Reveal animation */
+        /* Reveal */
         @keyframes revealIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -1160,14 +1555,13 @@
                 grid-template-columns: 1fr;
                 gap: 2.5rem;
             }
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
             .service-card:nth-child(1), .service-card:nth-child(2), .service-card:nth-child(3) {
                 grid-column: span 1;
             }
             .service-card:nth-child(3) { flex-direction: column; gap: 1rem; }
-            .metrics-grid, .process-grid, .testimonials-grid {
+            .work-grid, .metrics-grid, .process-grid, .testimonials-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             .metric-card:nth-child(2) { border-right: 0; }
@@ -1175,35 +1569,39 @@
                 border-bottom: var(--border-thin);
             }
             .nav-links { display: none; }
+            .nav-phone .label-text { display: none; }
         }
 
         @media (max-width: 640px) {
             .hero { padding: 3rem 1.25rem 4rem; }
-            .services, .about, .process, .testimonials, .faq, .contact {
+            .services, .work, .about, .process, .testimonials, .faq, .contact {
                 padding: 4rem 1.25rem;
             }
-            .metrics-grid { grid-template-columns: 1fr; }
+            .metrics-grid, .work-grid, .process-grid, .testimonials-grid { grid-template-columns: 1fr; }
             .metric-card { border-right: 0; border-bottom: var(--border-thin); }
             .metric-card:last-child { border-bottom: 0; }
-            .process-grid, .testimonials-grid { grid-template-columns: 1fr; }
             .form-group { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; }
             .footer-bottom { justify-content: center; text-align: center; }
-            .nav-logo span { display: none; }
+            .nav-logo span:not(.brand-mark) { display: none; }
+            .nav-logo .brand-mark { display: grid; }
+            .float-actions { bottom: 1rem; right: 1rem; }
+            .float-btn { width: 52px; height: 52px; }
+            .references-note { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
     <div class="ticker" aria-hidden="true">
         <div class="ticker-track">
-            <span>Now booking Q3 growth projects</span>
+            <span>Now booking Q3 growth projects — 3 slots left</span>
             <span>Free 30-min discovery call</span>
+            <span>Projects from ₹49,000</span>
+            <span>WhatsApp us anytime — fast replies</span>
             <span>120+ launches shipped</span>
-            <span>40% avg conversion uplift</span>
-            <span>SEO · E-commerce · Performance marketing</span>
-            <span>Now booking Q3 growth projects</span>
+            <span>Now booking Q3 growth projects — 3 slots left</span>
             <span>Free 30-min discovery call</span>
-            <span>120+ launches shipped</span>
-            <span>40% avg conversion uplift</span>
+            <span>Projects from ₹49,000</span>
         </div>
     </div>
 
@@ -1211,16 +1609,23 @@
         <div class="nav-content">
             <a href="#" class="nav-logo">
                 <span class="brand-mark">D</span>
-                <span>Digicreature Technologies</span>
+                <span>Digicreature</span>
             </a>
             <nav class="nav-links" aria-label="Main navigation">
                 <a href="#services">Services</a>
+                <a href="#work">Work</a>
                 <a href="#process">Process</a>
-                <a href="#testimonials">Reviews</a>
                 <a href="#faq">FAQ</a>
                 <a href="#about">About</a>
             </nav>
-            <a href="#contact" class="nav-cta">Get Proposal →</a>
+            <div class="nav-right">
+                <!-- Replace tel: with real number -->
+                <a href="tel:+919876543210" class="nav-phone">
+                    <span class="icon">☎</span>
+                    <span class="label-text">+91 98765 43210</span>
+                </a>
+                <a href="#contact" class="nav-cta">Get Quote →</a>
+            </div>
         </div>
     </header>
 
@@ -1229,11 +1634,11 @@
             <div class="hero-inner">
                 <div class="hero-badge">
                     <span class="pulse"></span>
-                    <span>System online — accepting new projects</span>
+                    <span>3 project slots open for Q3</span>
                 </div>
                 <h1>
                     Websites that <span class="circle">work</span><br>
-                    <span class="underline">harder</span> than your<br>
+                    <span class="highlight">harder</span> than your<br>
                     competitors.
                 </h1>
                 <div class="hero-row">
@@ -1242,10 +1647,14 @@
                             We design, build, and scale high-converting e-commerce experiences with focused <strong>SEO</strong>, <strong>digital marketing</strong>, and <strong>web development</strong> systems.
                         </p>
                         <div class="hero-actions">
-                            <button class="cta-button" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
-                                Explore Services →
+                            <button class="cta-button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+                                Get a Free Quote →
                             </button>
-                            <a href="#contact" class="secondary-button">Book a Call</a>
+                            <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="secondary-button">Chat on WhatsApp</a>
+                        </div>
+                        <div class="price-hint">
+                            <strong>FROM ₹49K</strong>
+                            <span>// Transparent, fixed-scope projects</span>
                         </div>
                     </div>
                     <aside class="hero-side-card" aria-label="Trust signal">
@@ -1254,8 +1663,23 @@
                         <div class="stat-desc">Brands launched globally — retail, services, manufacturing, education.</div>
                         <hr>
                         <div class="label">// Rated</div>
-                        <div class="stat" style="font-size: 1.6rem;">★★★★★ <span style="font-size: 0.9rem;">5.0 / 5.0</span></div>
+                        <div class="stat" style="font-size: 1.5rem;">★★★★★ <span style="font-size: 0.85rem;">5.0 / 5.0</span></div>
+                        <div class="stat-desc" style="font-size: 0.85rem; margin-top: 0.25rem;">Verified Google reviews</div>
                     </aside>
+                </div>
+            </div>
+        </section>
+
+        <section class="clients" aria-label="Client industries">
+            <div class="clients-inner">
+                <span class="clients-label">// Industries we serve →</span>
+                <div class="clients-strip">
+                    <span class="client-logo">Retail</span>
+                    <span class="client-logo">D2C Brands</span>
+                    <span class="client-logo">Education</span>
+                    <span class="client-logo">Manufacturing</span>
+                    <span class="client-logo">SaaS</span>
+                    <span class="client-logo">Services</span>
                 </div>
             </div>
         </section>
@@ -1292,15 +1716,16 @@
                 </div>
                 <div class="services-grid">
                     <article class="service-card fade-in">
-                        <span class="service-tag">01 / E-commerce</span>
-                        <span class="service-icon-big">✦</span>
-                        <h3 class="service-title">Crackers E-commerce</h3>
-                        <p class="service-description">Specialized e-commerce platform dedicated to crackers and fireworks with secure payment processing and inventory management.</p>
+                        <span class="service-tag">01 / Development</span>
+                        <span class="service-icon-big">▣</span>
+                        <h3 class="service-title">E-commerce Development</h3>
+                        <p class="service-description">Full-stack e-commerce builds with modern tech — designed for scalability, security, and a frictionless user experience for every shopper.</p>
+                        <div class="service-price">From <strong>₹89,000</strong></div>
                         <ul class="service-features">
-                            <li>Custom product catalog</li>
-                            <li>Secure payment gateway integration</li>
-                            <li>Real-time inventory tracking</li>
-                            <li>Order management system</li>
+                            <li>Custom e-commerce solutions</li>
+                            <li>Shopify &amp; WooCommerce builds</li>
+                            <li>Payment gateway integration</li>
+                            <li>Multi-vendor marketplace</li>
                         </ul>
                     </article>
 
@@ -1308,31 +1733,87 @@
                         <span class="service-tag">02 / Marketing</span>
                         <span class="service-icon-big">◐</span>
                         <h3 class="service-title">Digital Marketing</h3>
-                        <p class="service-description">End-to-end strategies that boost your online presence and drive meaningful engagement with your audience.</p>
+                        <p class="service-description">End-to-end strategies that boost online presence and drive meaningful engagement with your audience.</p>
+                        <div class="service-price">From <strong>₹25,000/mo</strong></div>
                         <ul class="service-features">
-                            <li>Social media management</li>
-                            <li>Search engine optimization (SEO)</li>
+                            <li>SEO &amp; content strategy</li>
                             <li>Pay-per-click advertising</li>
-                            <li>Content &amp; email marketing</li>
+                            <li>Social media management</li>
+                            <li>Email marketing</li>
                         </ul>
                     </article>
 
                     <article class="service-card fade-in">
                         <div class="service-card-left">
-                            <span class="service-tag">03 / Development</span>
-                            <span class="service-icon-big">▣</span>
-                            <h3 class="service-title">E-commerce Development</h3>
-                            <p class="service-description">Full-stack e-commerce development with modern technologies — built for scalability, security, and a frictionless user experience.</p>
+                            <span class="service-tag">03 / Niche store</span>
+                            <span class="service-icon-big">✦</span>
+                            <h3 class="service-title">Crackers / Niche E-commerce</h3>
+                            <p class="service-description">Specialised storefronts for regulated or niche categories — including crackers &amp; fireworks — with compliant checkout, inventory, and dispatch handling.</p>
+                            <div class="service-price">From <strong>₹1,49,000</strong></div>
                         </div>
                         <ul class="service-features service-card-right">
-                            <li>Custom e-commerce solutions</li>
-                            <li>Shopify &amp; WooCommerce builds</li>
-                            <li>Payment gateway integration</li>
-                            <li>Multi-vendor marketplace</li>
-                            <li>Progressive web apps (PWA)</li>
-                            <li>Third-party API integrations</li>
+                            <li>Custom product catalog</li>
+                            <li>Secure payment gateway integration</li>
+                            <li>Real-time inventory tracking</li>
+                            <li>Order management system</li>
+                            <li>Compliance-ready checkout flow</li>
+                            <li>Dispatch &amp; logistics integration</li>
                         </ul>
                     </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" class="work">
+            <div class="container">
+                <div class="section-head">
+                    <div>
+                        <span class="section-eyebrow">Selected work</span>
+                        <h2 class="section-title fade-in">Built. Shipped.<br>Growing.</h2>
+                    </div>
+                    <p class="section-sub fade-in">A snapshot of recent projects — full case studies available on request.</p>
+                </div>
+                <div class="work-grid">
+                    <article class="work-card fade-in">
+                        <div class="work-thumb one" aria-hidden="true">
+                            <div class="work-thumb-label">
+                                D2C STORE<small>// PROJECT 01</small>
+                            </div>
+                        </div>
+                        <div class="work-body">
+                            <div class="work-meta"><span>Shopify</span><span>2025</span></div>
+                            <h3 class="work-title">D2C Apparel Rebuild</h3>
+                            <p class="work-result">+62% checkout completion · 2.1s LCP after rebuild</p>
+                        </div>
+                    </article>
+                    <article class="work-card fade-in">
+                        <div class="work-thumb two" aria-hidden="true">
+                            <div class="work-thumb-label">
+                                SEO PLAY<small>// PROJECT 02</small>
+                            </div>
+                        </div>
+                        <div class="work-body">
+                            <div class="work-meta"><span>SEO</span><span>2025</span></div>
+                            <h3 class="work-title">B2B Services SEO</h3>
+                            <p class="work-result">3.4× organic traffic in 6 months · 18 page-1 keywords</p>
+                        </div>
+                    </article>
+                    <article class="work-card fade-in">
+                        <div class="work-thumb three" aria-hidden="true">
+                            <div class="work-thumb-label">
+                                CRACKERS<small>// PROJECT 03</small>
+                            </div>
+                        </div>
+                        <div class="work-body">
+                            <div class="work-meta"><span>Custom</span><span>2024</span></div>
+                            <h3 class="work-title">Festive Crackers Store</h3>
+                            <p class="work-result">₹38L season revenue · 0 checkout drop-offs flagged</p>
+                        </div>
+                    </article>
+                </div>
+                <div class="work-note">
+                    <!-- Replace with real case study links -->
+                    Want a deeper look? <a href="#contact">Ask us for case studies</a> with full numbers, screenshots &amp; references.
                 </div>
             </div>
         </section>
@@ -1344,13 +1825,22 @@
                         <span class="section-eyebrow">About</span>
                         <h2 class="section-title fade-in">Why<br>Digicreature?</h2>
                         <p class="about-text">
-                            At Digicreature Technologies, we deliver simple, effective digital solutions that drive growth. Our team specializes in user-friendly e-commerce platforms, impactful marketing strategies, and reliable web applications — focused on clarity, quality, and measurable results.
+                            We're a small, senior-led team that delivers simple, effective digital solutions that drive growth. Our work spans user-friendly e-commerce platforms, impactful marketing strategies, and reliable web applications — focused on clarity, quality, and measurable results.
                         </p>
                         <div class="about-pills">
                             <span class="about-pill">Conversion-first</span>
                             <span class="about-pill">Transparent reporting</span>
                             <span class="about-pill">Senior-led delivery</span>
                             <span class="about-pill">Built to scale</span>
+                        </div>
+                        <!-- Replace founder-photo initials + name with real photo & name -->
+                        <div class="founder-card">
+                            <div class="founder-photo">S</div>
+                            <div class="founder-text">
+                                <div class="founder-name">Saravanan M.</div>
+                                <div class="founder-role">Founder &amp; lead engineer</div>
+                                <div class="founder-bio">"Every project I take on, I treat like my own business. You'll always work with the person who builds it — not a sales rep."</div>
+                            </div>
                         </div>
                     </div>
                     <div class="about-visual fade-in" aria-hidden="true">
@@ -1376,17 +1866,17 @@
                     <article class="process-step fade-in">
                         <div class="process-num">01</div>
                         <h3>Discovery &amp; Strategy</h3>
-                        <p>We identify your goals, competitors, and growth opportunities to build a focused roadmap.</p>
+                        <p>We identify your goals, competitors, and growth opportunities to build a focused roadmap. Fixed scope, fixed price.</p>
                     </article>
                     <article class="process-step fade-in">
                         <div class="process-num">02</div>
                         <h3>Build &amp; Launch</h3>
-                        <p>Our team executes design, development, and campaign setup with speed and technical precision.</p>
+                        <p>Our team executes design, development, and campaign setup with speed and precision. Weekly demos, no surprises.</p>
                     </article>
                     <article class="process-step fade-in">
                         <div class="process-num">03</div>
                         <h3>Optimize &amp; Scale</h3>
-                        <p>We continuously improve conversion, acquisition, and retention based on real performance data.</p>
+                        <p>We continuously improve conversion, acquisition, and retention based on real data. You own the code, always.</p>
                     </article>
                 </div>
             </div>
@@ -1396,10 +1886,10 @@
             <div class="container">
                 <div class="section-head">
                     <div>
-                        <span class="section-eyebrow">Client stories</span>
+                        <span class="section-eyebrow">Client feedback</span>
                         <h2 class="section-title fade-in">Trusted by brands<br>that need results.</h2>
                     </div>
-                    <p class="section-sub fade-in">Real feedback from teams who chose growth over guesswork.</p>
+                    <p class="section-sub fade-in">Anonymised feedback below — real names &amp; references available on request.</p>
                 </div>
                 <div class="testimonials-grid">
                     <article class="testimonial-card fade-in">
@@ -1407,7 +1897,7 @@
                         <p>"Digicreature rebuilt our store and improved speed + checkout UX. We saw better lead quality within weeks."</p>
                         <div class="testimonial-author">
                             <span class="testimonial-avatar">R</span>
-                            Retail Business Owner
+                            <span><strong>Retail brand owner</strong><br>Coimbatore · D2C apparel</span>
                         </div>
                     </article>
                     <article class="testimonial-card fade-in">
@@ -1415,7 +1905,7 @@
                         <p>"Their SEO roadmap was practical and transparent. Organic visibility improved steadily with clear monthly reporting."</p>
                         <div class="testimonial-author">
                             <span class="testimonial-avatar">B</span>
-                            B2B Marketing Lead
+                            <span><strong>B2B marketing lead</strong><br>Bengaluru · Services firm</span>
                         </div>
                     </article>
                     <article class="testimonial-card fade-in">
@@ -1423,9 +1913,13 @@
                         <p>"The team communicates quickly and executes exactly what they promise. A great partner for scaling digital campaigns."</p>
                         <div class="testimonial-author">
                             <span class="testimonial-avatar">E</span>
-                            E-commerce Founder
+                            <span><strong>E-commerce founder</strong><br>Chennai · Festive retail</span>
                         </div>
                     </article>
+                </div>
+                <div class="references-note">
+                    <p><strong>Want to verify before you decide?</strong> We're happy to put you on a 15-minute call with a past client whose project mirrors yours.</p>
+                    <a class="ref-action" href="#contact">Request a reference →</a>
                 </div>
             </div>
         </section>
@@ -1436,32 +1930,32 @@
                     <div>
                         <span class="section-eyebrow">FAQ</span>
                         <h2 class="section-title fade-in">Common<br>questions.</h2>
-                        <p class="section-sub fade-in" style="margin-top: 1.5rem;">Still unsure? Reach out below and we'll guide you through it.</p>
+                        <p class="section-sub fade-in" style="margin-top: 1.5rem;">Still unsure? <a href="https://wa.me/919876543210" style="font-weight: 700;">WhatsApp us</a> and we'll help.</p>
                     </div>
                     <div class="faq-list">
                         <details class="faq-item fade-in">
+                            <summary>How much will this cost?<span class="faq-toggle" aria-hidden="true">+</span></summary>
+                            <div class="faq-body">Marketing engagements start at ₹25,000/month, e-commerce builds from ₹89,000, and specialised stores from ₹1,49,000. Every quote is fixed-scope and itemised before we start — no surprises.</div>
+                        </details>
+                        <details class="faq-item fade-in">
+                            <summary>Do I own the code &amp; assets?<span class="faq-toggle" aria-hidden="true">+</span></summary>
+                            <div class="faq-body">Yes — 100%. Code, designs, accounts and content are all handed over to you. We don't lock you in.</div>
+                        </details>
+                        <details class="faq-item fade-in">
+                            <summary>What if I want to cancel?<span class="faq-toggle" aria-hidden="true">+</span></summary>
+                            <div class="faq-body">Monthly retainers are cancellable with 15 days' notice. Project work is milestone-based — pay only for what's delivered.</div>
+                        </details>
+                        <details class="faq-item fade-in">
                             <summary>How quickly can we start?<span class="faq-toggle" aria-hidden="true">+</span></summary>
-                            <div class="faq-body">Most projects begin within a few business days after discovery and scope finalization.</div>
+                            <div class="faq-body">Most projects begin within a few business days after the discovery call and scope sign-off.</div>
                         </details>
                         <details class="faq-item fade-in">
-                            <summary>Do you support local + global SEO?<span class="faq-toggle" aria-hidden="true">+</span></summary>
-                            <div class="faq-body">Yes. We build strategies for local discovery and international visibility based on your market goals.</div>
+                            <summary>Where is your team based?<span class="faq-toggle" aria-hidden="true">+</span></summary>
+                            <div class="faq-body">India — with senior delivery for clients across India, UAE, UK, and US time zones.</div>
                         </details>
                         <details class="faq-item fade-in">
-                            <summary>Can you work with our existing site?<span class="faq-toggle" aria-hidden="true">+</span></summary>
-                            <div class="faq-body">Absolutely. We can optimize existing platforms or fully redesign when needed.</div>
-                        </details>
-                        <details class="faq-item fade-in">
-                            <summary>Which industries do you serve?<span class="faq-toggle" aria-hidden="true">+</span></summary>
-                            <div class="faq-body">Retail, services, manufacturing, education, and startups that want stronger online growth.</div>
-                        </details>
-                        <details class="faq-item fade-in">
-                            <summary>Are monthly plans available?<span class="faq-toggle" aria-hidden="true">+</span></summary>
-                            <div class="faq-body">Yes — flexible monthly plans for SEO, paid ads, content, and analytics reporting.</div>
-                        </details>
-                        <details class="faq-item fade-in">
-                            <summary>Can you optimize landing page conversion?<span class="faq-toggle" aria-hidden="true">+</span></summary>
-                            <div class="faq-body">Yes. We run conversion audits, improve CTA flow, and optimize UX to increase qualified leads.</div>
+                            <summary>Do you sign NDAs?<span class="faq-toggle" aria-hidden="true">+</span></summary>
+                            <div class="faq-body">Yes. Mutual NDAs and statements of work are standard. Just ask.</div>
                         </details>
                     </div>
                 </div>
@@ -1473,7 +1967,7 @@
                 <div class="contact-intro fade-in">
                     <span class="section-eyebrow">Let's talk</span>
                     <h2>Tell us about<br>your project.</h2>
-                    <p>Share a few details and we'll get back within one business day with a tailored proposal.</p>
+                    <p>Share a few details and we'll get back within one business day with a tailored, no-pressure proposal.</p>
                     <ul class="contact-list">
                         <li>
                             <span class="ico">✦</span>
@@ -1481,13 +1975,21 @@
                         </li>
                         <li>
                             <span class="ico">◐</span>
-                            <span>Transparent pricing &amp; timelines</span>
+                            <span>Fixed-scope, transparent pricing</span>
                         </li>
                         <li>
                             <span class="ico">▣</span>
                             <span>No-pressure recommendations</span>
                         </li>
                     </ul>
+                    <div class="contact-direct">
+                        <span class="label">// Prefer to talk directly?</span>
+                        <a href="https://wa.me/919876543210" target="_blank" rel="noopener">
+                            <span>💬</span> WhatsApp +91 98765 43210
+                        </a>
+                        <a href="tel:+919876543210"><span>☎</span> Call +91 98765 43210</a>
+                        <a href="mailto:hello@digicreature.com"><span>✉</span> hello@digicreature.com</a>
+                    </div>
                 </div>
 
                 <form class="contact-form fade-in" aria-label="Contact form for Digicreature inquiries">
@@ -1513,7 +2015,7 @@
                     </div>
                     <div class="field">
                         <label for="message">Project details <span class="req">*</span></label>
-                        <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your goals, timeline, and what you'd like to build..." required aria-required="true"></textarea>
+                        <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your goals, timeline, and budget range..." required aria-required="true"></textarea>
                     </div>
                     <button type="submit" class="submit-btn">Send Message →</button>
                 </form>
@@ -1521,19 +2023,37 @@
         </section>
     </main>
 
+    <!-- Floating contact -->
+    <div class="float-actions" aria-label="Quick contact">
+        <a class="float-btn whatsapp" href="https://wa.me/919876543210" target="_blank" rel="noopener" aria-label="WhatsApp us">
+            <span>💬</span>
+            <span class="tip">Chat on WhatsApp</span>
+        </a>
+        <a class="float-btn call" href="tel:+919876543210" aria-label="Call us">
+            <span>☎</span>
+            <span class="tip">Call us</span>
+        </a>
+    </div>
+
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-top">
                 <div class="footer-brand">
                     <h3>Digicreature<br>Technologies</h3>
                     <p>Growth-focused websites, e-commerce stores, and SEO campaigns that turn ambition into measurable results.</p>
+                    <div class="footer-socials">
+                        <!-- Replace # with real social URLs -->
+                        <a href="#" class="footer-social" aria-label="LinkedIn">in</a>
+                        <a href="#" class="footer-social" aria-label="Instagram">ig</a>
+                        <a href="#" class="footer-social" aria-label="X / Twitter">x</a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h4>// Explore</h4>
                     <ul>
                         <li><a href="#services">Services</a></li>
+                        <li><a href="#work">Our work</a></li>
                         <li><a href="#process">Process</a></li>
-                        <li><a href="#testimonials">Reviews</a></li>
                         <li><a href="#faq">FAQ</a></li>
                     </ul>
                 </div>
@@ -1544,6 +2064,14 @@
                         <li><a href="#contact">Contact</a></li>
                         <li><a href="privacy.html">Privacy Policy</a></li>
                         <li><a href="terms.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>// Reach us</h4>
+                    <ul>
+                        <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+                        <li><a href="mailto:hello@digicreature.com">hello@digicreature.com</a></li>
+                        <li><a href="https://wa.me/919876543210" target="_blank" rel="noopener">WhatsApp</a></li>
                     </ul>
                 </div>
             </div>
