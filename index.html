@@ -1589,6 +1589,328 @@
             .float-btn { width: 52px; height: 52px; }
             .references-note { flex-direction: column; align-items: flex-start; }
         }
+
+        /* =========================
+           CHATBOT
+           ========================= */
+        .chat-launcher {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--bg-block);
+            color: var(--ink);
+            border: var(--border-thin);
+            display: grid;
+            place-items: center;
+            text-decoration: none;
+            cursor: pointer;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.6rem;
+            box-shadow: var(--shadow);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            position: relative;
+        }
+
+        .chat-launcher:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 9px 9px 0 0 var(--ink);
+        }
+
+        .chat-launcher .tip {
+            position: absolute;
+            right: calc(100% + 0.6rem);
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--ink);
+            color: var(--paper);
+            padding: 0.3rem 0.6rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            opacity: 0;
+            pointer-events: none;
+            white-space: nowrap;
+            border: var(--border-thin);
+            transition: opacity 0.15s ease;
+        }
+        .chat-launcher:hover .tip { opacity: 1; }
+
+        .chat-launcher .badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            width: 22px;
+            height: 22px;
+            background: var(--red);
+            color: var(--paper);
+            border: 2px solid var(--ink);
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 0.7rem;
+            animation: blinkDot 1.6s ease-in-out infinite;
+        }
+
+        .chat-panel {
+            position: fixed;
+            bottom: 6.5rem;
+            right: 1.25rem;
+            width: 360px;
+            max-width: calc(100vw - 2.5rem);
+            height: 540px;
+            max-height: calc(100vh - 8.5rem);
+            background: var(--paper);
+            border: var(--border);
+            box-shadow: var(--shadow-lg);
+            z-index: 9998;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            transform: translateY(10px);
+            opacity: 0;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+
+        .chat-panel.open {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .chat-header {
+            background: var(--ink);
+            color: var(--bg-block);
+            padding: 1rem 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: var(--border-thin);
+        }
+
+        .chat-avatar {
+            width: 36px;
+            height: 36px;
+            background: var(--bg-block);
+            color: var(--ink);
+            border: var(--border-thin);
+            display: grid;
+            place-items: center;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1.05rem;
+        }
+
+        .chat-title-block {
+            flex: 1;
+            display: grid;
+            gap: 0.1rem;
+        }
+
+        .chat-title-block h4 {
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: -0.01em;
+        }
+
+        .chat-title-block .status {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 232, 61, 0.75);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .chat-title-block .status::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            background: var(--green);
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px rgba(0, 184, 92, 0.3);
+        }
+
+        .chat-close {
+            background: transparent;
+            border: 1.5px solid var(--bg-block);
+            color: var(--bg-block);
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 0.95rem;
+            display: grid;
+            place-items: center;
+            transition: background 0.15s ease, color 0.15s ease;
+        }
+
+        .chat-close:hover {
+            background: var(--bg-block);
+            color: var(--ink);
+        }
+
+        .chat-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            background: var(--bg);
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+        }
+
+        .chat-body::-webkit-scrollbar { width: 6px; }
+        .chat-body::-webkit-scrollbar-thumb { background: var(--ink); }
+
+        .chat-msg {
+            max-width: 88%;
+            padding: 0.75rem 0.95rem;
+            border: var(--border-thin);
+            font-size: 0.92rem;
+            font-weight: 500;
+            line-height: 1.45;
+            white-space: pre-line;
+            animation: msgIn 0.25s ease forwards;
+            opacity: 0;
+            transform: translateY(6px);
+        }
+
+        @keyframes msgIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .chat-msg.bot {
+            background: var(--paper);
+            align-self: flex-start;
+            box-shadow: 3px 3px 0 0 var(--ink);
+        }
+
+        .chat-msg.user {
+            background: var(--bg-block);
+            align-self: flex-end;
+            box-shadow: 3px 3px 0 0 var(--ink);
+        }
+
+        .chat-typing {
+            background: var(--paper);
+            border: var(--border-thin);
+            padding: 0.7rem 1rem;
+            align-self: flex-start;
+            display: inline-flex;
+            gap: 0.35rem;
+            box-shadow: 3px 3px 0 0 var(--ink);
+        }
+
+        .chat-typing span {
+            width: 8px;
+            height: 8px;
+            background: var(--ink);
+            border-radius: 50%;
+            animation: typing 1s infinite ease-in-out;
+        }
+
+        .chat-typing span:nth-child(2) { animation-delay: 0.15s; }
+        .chat-typing span:nth-child(3) { animation-delay: 0.3s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+            30% { opacity: 1; transform: translateY(-3px); }
+        }
+
+        .chat-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-top: 0.25rem;
+            align-self: stretch;
+        }
+
+        .chat-option {
+            background: var(--paper);
+            border: var(--border-thin);
+            padding: 0.55rem 0.8rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 3px 3px 0 0 var(--ink);
+            transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+            color: var(--ink);
+            text-align: left;
+        }
+
+        .chat-option:hover {
+            background: var(--bg-block);
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 0 var(--red);
+        }
+
+        .chat-footer {
+            border-top: var(--border-thin);
+            padding: 0.75rem;
+            background: var(--paper);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 0.65rem 0.8rem;
+            border: var(--border-thin);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            background: var(--bg);
+            color: var(--ink);
+            font-weight: 500;
+        }
+
+        .chat-input:focus {
+            outline: none;
+            box-shadow: 3px 3px 0 0 var(--blue);
+        }
+
+        .chat-input:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .chat-send {
+            background: var(--ink);
+            color: var(--bg-block);
+            border: var(--border-thin);
+            padding: 0 0.95rem;
+            font-family: 'Archivo Black', sans-serif;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+            box-shadow: 3px 3px 0 0 var(--ink);
+        }
+
+        .chat-send:hover:not(:disabled) {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 0 var(--red);
+        }
+
+        .chat-send:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 480px) {
+            .chat-panel {
+                bottom: 5.5rem;
+                right: 0.75rem;
+                left: 0.75rem;
+                width: auto;
+                max-width: none;
+                height: calc(100vh - 7.5rem);
+            }
+            .chat-launcher { width: 56px; height: 56px; font-size: 1.4rem; }
+        }
     </style>
 </head>
 <body>
@@ -1620,7 +1942,7 @@
             </nav>
             <div class="nav-right">
                 <!-- Replace tel: with real number -->
-                <a href="tel:+919900358019" class="nav-phone">
+                <a href="tel:+919600358019" class="nav-phone">
                     <span class="icon">☎</span>
                     <span class="label-text">+91 96003 58019</span>
                 </a>
@@ -2025,15 +2347,37 @@
 
     <!-- Floating contact -->
     <div class="float-actions" aria-label="Quick contact">
+        <button type="button" class="chat-launcher" id="chatLauncher" aria-label="Open chat" aria-controls="chatPanel" aria-expanded="false">
+            <span id="chatLauncherIcon">💬</span>
+            <span class="badge" id="chatBadge">1</span>
+            <span class="tip">Ask Digi</span>
+        </button>
         <a class="float-btn whatsapp" href="https://wa.me/919876543210" target="_blank" rel="noopener" aria-label="WhatsApp us">
-            <span>💬</span>
-            <span class="tip">Chat on WhatsApp</span>
+            <span>📱</span>
+            <span class="tip">WhatsApp</span>
         </a>
         <a class="float-btn call" href="tel:+919876543210" aria-label="Call us">
             <span>☎</span>
             <span class="tip">Call us</span>
         </a>
     </div>
+
+    <!-- Chat panel -->
+    <aside class="chat-panel" id="chatPanel" role="dialog" aria-label="Chat with Digicreature">
+        <header class="chat-header">
+            <div class="chat-avatar">D</div>
+            <div class="chat-title-block">
+                <h4>Digi · Quick assistant</h4>
+                <span class="status">Online · Replies in ~1 min</span>
+            </div>
+            <button type="button" class="chat-close" id="chatClose" aria-label="Close chat">✕</button>
+        </header>
+        <div class="chat-body" id="chatBody" aria-live="polite"></div>
+        <form class="chat-footer" id="chatForm" autocomplete="off">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Type a reply..." aria-label="Chat message" disabled>
+            <button type="submit" class="chat-send" id="chatSend" aria-label="Send" disabled>→</button>
+        </form>
+    </aside>
 
     <footer class="footer">
         <div class="footer-content">
@@ -2084,8 +2428,7 @@
 
     <script>
         // Google Sheets Integration
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwrRpbBgQKgL9M9T3RzMogbArRxRvXlUj9roINRk4FtOEY-Ihfq46TycoOkKnspFhAZBQ/exec';
-
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUP784zh1p-F8PgsunZvzGX5hiLTyJlHflbDfrOREp586GtLTkpU1sAFIT030yrrjQ/exec';
         async function sendToGoogleSheets(formData) {
             const data = {
                 timestamp: new Date().toLocaleString(),
@@ -2235,6 +2578,306 @@
                 }, 3000);
             });
         });
+
+        /* =============================================================
+           CHATBOT — "Digi" quick assistant
+           -------------------------------------------------------------
+           Lead capture saves to a SEPARATE Google Apps Script endpoint
+           (different from the contact form sheet).
+
+           SETUP STEPS:
+           1. Create a new Google Sheet for chatbot leads.
+           2. Open Extensions → Apps Script, paste a doPost handler that
+              appends rows from JSON (same pattern as the contact form
+              script), then deploy as a Web App (Execute as: Me, Access:
+              Anyone).
+           3. Replace the placeholder URL below with the new /exec URL.
+           ============================================================= */
+        const CHATBOT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUP784zh1p-F8PgsunZvzGX5hiLTyJlHflbDfrOREp586GtLTkpU1sAFIT030yrrjQ/exec';
+        const WA_NUMBER = '919600358019'; // replace with real WhatsApp number
+
+        const chatFlow = {
+            start: {
+                bot: "Hi! I'm Digi 👋 — Digicreature's quick assistant. What brings you here today?",
+                options: [
+                    { label: "I need a website", next: 'website' },
+                    { label: "SEO / Marketing help", next: 'marketing' },
+                    { label: "How much does it cost?", next: 'pricing' },
+                    { label: "Talk to a human", next: 'human' }
+                ]
+            },
+            website: {
+                bot: "Got it. We build e-commerce & marketing sites starting from ₹89,000 — fixed scope, fixed price. Want a custom quote for your project?",
+                options: [
+                    { label: "Yes, send me a quote", next: 'lead_name' },
+                    { label: "Show me your work", next: 'work' },
+                    { label: "Talk to a human", next: 'human' }
+                ]
+            },
+            marketing: {
+                bot: "We run SEO, paid ads, social & content from ₹25,000/month. Most clients see results inside 60–90 days. Want a tailored plan for your business?",
+                options: [
+                    { label: "Yes, get a plan", next: 'lead_name' },
+                    { label: "Talk to a human", next: 'human' }
+                ]
+            },
+            pricing: {
+                bot: "Quick price guide:\n• Marketing — from ₹25K / month\n• E-commerce builds — from ₹89K\n• Niche / regulated stores — from ₹1.49L\n\nEvery quote is fixed-scope, no surprises. Want a number for your specific project?",
+                options: [
+                    { label: "Yes, send me a quote", next: 'lead_name' },
+                    { label: "Talk to a human", next: 'human' }
+                ]
+            },
+            work: {
+                bot: "Recent wins:\n• +62% checkout completion for a D2C apparel brand\n• 3.4× organic traffic for a B2B services firm in 6 months\n• ₹38L season revenue for a festive crackers store\n\nWant a full case study?",
+                options: [
+                    { label: "Yes, send me cases", next: 'lead_name' },
+                    { label: "Get a quote instead", next: 'lead_name' }
+                ]
+            },
+            human: {
+                bot: "No problem. Fastest way is WhatsApp — we usually reply within minutes. Or share your details and we'll call you within 24h.",
+                options: [
+                    { label: "Open WhatsApp", action: 'whatsapp' },
+                    { label: "Share my details", next: 'lead_name' }
+                ]
+            },
+            lead_name: {
+                bot: "Awesome — let's get you a proposal. What's your name?",
+                input: { type: 'text', placeholder: 'Your name', field: 'name', validate: v => v.trim().length >= 2 || 'Please enter your name', next: 'lead_email' }
+            },
+            lead_email: {
+                bot: "Thanks {name}! What email should we send the proposal to?",
+                input: { type: 'email', placeholder: 'you@brand.com', field: 'email', validate: v => /.+@.+\..+/.test(v) || 'That email looks off — try again', next: 'lead_phone' }
+            },
+            lead_phone: {
+                bot: "Got it. Phone or WhatsApp number? (Optional — type 'skip' to skip)",
+                input: { type: 'tel', placeholder: '+91 ...', field: 'phone', optional: true, next: 'lead_message' }
+            },
+            lead_message: {
+                bot: "Last thing — anything specific we should know? (Goals, timeline, budget)",
+                input: { type: 'text', placeholder: 'Share project details...', field: 'message', optional: true, next: 'submitting' }
+            },
+            submitting: { action: 'submit' },
+            done: {
+                bot: "Thanks {name}! 🎉 Your details are saved — we'll be in touch within 24h. Want to skip the wait?",
+                options: [
+                    { label: "WhatsApp us now", action: 'whatsapp' },
+                    { label: "Close chat", action: 'close' }
+                ]
+            },
+            error: {
+                bot: "Hmm — something glitched on our end. Please try the contact form below, or WhatsApp us directly.",
+                options: [
+                    { label: "Open WhatsApp", action: 'whatsapp' },
+                    { label: "Start over", next: 'start' }
+                ]
+            }
+        };
+
+        const chat = {
+            launcher: document.getElementById('chatLauncher'),
+            launcherIcon: document.getElementById('chatLauncherIcon'),
+            badge: document.getElementById('chatBadge'),
+            panel: document.getElementById('chatPanel'),
+            close: document.getElementById('chatClose'),
+            body: document.getElementById('chatBody'),
+            form: document.getElementById('chatForm'),
+            input: document.getElementById('chatInput'),
+            send: document.getElementById('chatSend'),
+            state: 'start',
+            lead: { name: '', email: '', phone: '', message: '' },
+            started: false,
+            currentInput: null
+        };
+
+        function openChat() {
+            chat.panel.classList.add('open');
+            chat.launcher.setAttribute('aria-expanded', 'true');
+            chat.launcherIcon.textContent = '✕';
+            chat.badge.style.display = 'none';
+            if (!chat.started) {
+                chat.started = true;
+                setTimeout(() => runStep('start'), 280);
+            }
+        }
+
+        function closeChat() {
+            chat.panel.classList.remove('open');
+            chat.launcher.setAttribute('aria-expanded', 'false');
+            chat.launcherIcon.textContent = '💬';
+        }
+
+        chat.launcher.addEventListener('click', () => {
+            chat.panel.classList.contains('open') ? closeChat() : openChat();
+        });
+        chat.close.addEventListener('click', closeChat);
+
+        function appendMessage(text, who = 'bot') {
+            const msg = document.createElement('div');
+            msg.className = 'chat-msg ' + who;
+            msg.textContent = text;
+            chat.body.appendChild(msg);
+            chat.body.scrollTop = chat.body.scrollHeight;
+            return msg;
+        }
+
+        function appendTyping() {
+            const t = document.createElement('div');
+            t.className = 'chat-typing';
+            t.innerHTML = '<span></span><span></span><span></span>';
+            chat.body.appendChild(t);
+            chat.body.scrollTop = chat.body.scrollHeight;
+            return t;
+        }
+
+        function appendOptions(options) {
+            const wrap = document.createElement('div');
+            wrap.className = 'chat-options';
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.className = 'chat-option';
+                btn.textContent = opt.label;
+                btn.addEventListener('click', () => handleOption(opt));
+                wrap.appendChild(btn);
+            });
+            chat.body.appendChild(wrap);
+            chat.body.scrollTop = chat.body.scrollHeight;
+            return wrap;
+        }
+
+        function clearOptions() {
+            chat.body.querySelectorAll('.chat-options').forEach(el => el.remove());
+        }
+
+        function handleOption(opt) {
+            clearOptions();
+            appendMessage(opt.label, 'user');
+
+            if (opt.action === 'whatsapp') {
+                const msg = encodeURIComponent("Hi Digicreature, I'd like to know more about your services.");
+                window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
+                return;
+            }
+            if (opt.action === 'close') {
+                closeChat();
+                return;
+            }
+            if (opt.next) runStep(opt.next);
+        }
+
+        function fillTemplate(str) {
+            return str.replace(/\{(\w+)\}/g, (_, k) => chat.lead[k] || '');
+        }
+
+        async function runStep(stateKey) {
+            chat.state = stateKey;
+            const step = chatFlow[stateKey];
+            if (!step) return;
+
+            // Submission state
+            if (step.action === 'submit') {
+                await submitLead();
+                return;
+            }
+
+            const typing = appendTyping();
+            await wait(700);
+            typing.remove();
+
+            if (step.bot) appendMessage(fillTemplate(step.bot), 'bot');
+
+            if (step.options) {
+                chat.input.disabled = true;
+                chat.send.disabled = true;
+                chat.input.placeholder = 'Pick an option above...';
+                appendOptions(step.options);
+            } else if (step.input) {
+                chat.currentInput = step.input;
+                chat.input.disabled = false;
+                chat.send.disabled = false;
+                chat.input.type = step.input.type || 'text';
+                chat.input.placeholder = step.input.placeholder || 'Type a reply...';
+                chat.input.value = '';
+                setTimeout(() => chat.input.focus(), 50);
+            }
+        }
+
+        function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+        chat.form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const value = chat.input.value.trim();
+            const cfg = chat.currentInput;
+            if (!cfg) return;
+
+            // Optional skip
+            if (cfg.optional && (value === '' || value.toLowerCase() === 'skip')) {
+                appendMessage('— skipped —', 'user');
+                chat.lead[cfg.field] = '';
+            } else {
+                if (!value) return;
+                if (cfg.validate) {
+                    const result = cfg.validate(value);
+                    if (result !== true) {
+                        appendMessage(result, 'bot');
+                        chat.body.scrollTop = chat.body.scrollHeight;
+                        return;
+                    }
+                }
+                chat.lead[cfg.field] = value;
+                appendMessage(value, 'user');
+            }
+            chat.input.value = '';
+            chat.input.disabled = true;
+            chat.send.disabled = true;
+            chat.currentInput = null;
+            runStep(cfg.next);
+        });
+
+        async function submitLead() {
+            const typing = appendTyping();
+
+            const payload = {
+                timestamp: new Date().toLocaleString(),
+                name: chat.lead.name || '',
+                email: chat.lead.email || '',
+                phone: chat.lead.phone || '',
+                message: chat.lead.message || '',
+                company: '',
+                source: 'Digicreature Chatbot (Digi)'
+            };
+
+            let success = false;
+            try {
+                if (CHATBOT_SCRIPT_URL && !CHATBOT_SCRIPT_URL.startsWith('REPLACE_')) {
+                    await fetch(CHATBOT_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    success = true;
+                } else {
+                    // Fallback: send to the main contact-form sheet with source tag
+                    await fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    success = true;
+                    console.warn('CHATBOT_SCRIPT_URL not configured — chat lead sent to main contact-form sheet instead.');
+                }
+            } catch (err) {
+                console.error('Chat lead submit failed:', err);
+                success = false;
+            }
+
+            typing.remove();
+            runStep(success ? 'done' : 'error');
+        }
     </script>
 </body>
 </html>
