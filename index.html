@@ -787,16 +787,125 @@
 
         /* ============ AI MOTION ============ */
 
-        /* The red ring around "AI" draws itself in on load. */
+        /* The red ring around "AI" redraws itself on a loop. */
         .hero h1 .circle::after {
             clip-path: inset(0 0 0 0);
-            animation: circleDraw 0.9s 0.35s cubic-bezier(.22,.9,.3,1) both;
+            animation: circleDraw 6.5s 0.35s cubic-bezier(.22,.9,.3,1) infinite;
         }
 
         @keyframes circleDraw {
             0%   { clip-path: inset(0 100% 0 0); opacity: 0; }
-            20%  { opacity: 1; }
-            100% { clip-path: inset(0 0 0 0); opacity: 1; }
+            4%   { opacity: 1; }
+            14%  { clip-path: inset(0 0 0 0); opacity: 1; }
+            86%  { clip-path: inset(0 0 0 0); opacity: 1; }
+            96%  { clip-path: inset(0 0 0 0); opacity: 0; }
+            100% { clip-path: inset(0 100% 0 0); opacity: 0; }
+        }
+
+        /* --- "AI" keyword: looping node-graph + scan + RGB split ---------- */
+        .ai-word { isolation: isolate; }
+
+        .ai-word-text {
+            position: relative;
+            z-index: 2;
+            color: var(--ink);
+            display: inline-block;
+            animation: aiGlitch 6.5s steps(1) infinite;
+        }
+
+        /* Brief RGB-split pulse, like a signal glitch, once per loop. */
+        @keyframes aiGlitch {
+            0%, 70%   { text-shadow: none; transform: translate(0, 0); }
+            71%       { text-shadow: -8px 0 var(--red), 8px 0 var(--blue); transform: translate(3px, -2px); }
+            73%       { text-shadow: 9px 0 var(--red), -9px 0 var(--blue); transform: translate(-3px, 2px); }
+            75%       { text-shadow: -6px 0 var(--blue), 6px 0 var(--red); transform: translate(2px, 1px); }
+            77%       { text-shadow: 4px 0 var(--red), -4px 0 var(--blue); transform: translate(-1px, 0); }
+            79%, 100% { text-shadow: none; transform: translate(0, 0); }
+        }
+
+        /* A highlight wipes in BEHIND the letters each loop. Painting the
+           glyphs yellow instead would drop "AI" to ~1.1:1 against the cream
+           background — unreadable for a third of every cycle. */
+        .ai-word::before {
+            content: '';
+            position: absolute;
+            inset: 2% -6% 6% -6%;
+            z-index: 0;
+            background: var(--bg-block);
+            clip-path: inset(0 100% 0 0);
+            animation: aiSweep 6.5s cubic-bezier(.65,0,.35,1) infinite;
+            pointer-events: none;
+        }
+
+        @keyframes aiSweep {
+            0%, 20%  { clip-path: inset(0 100% 0 0); }
+            32%, 68% { clip-path: inset(0 0 0 0); }
+            80%,100% { clip-path: inset(0 0 0 100%); }
+        }
+
+        /* Node graph orbiting the word — the "AI" tell. */
+        .ai-nodes {
+            position: absolute;
+            inset: -46% -34%;
+            width: 168%;
+            height: 192%;
+            z-index: 1;
+            overflow: visible;
+            pointer-events: none;
+            animation: aiOrbit 26s linear infinite;
+        }
+
+        @keyframes aiOrbit {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        .ai-nodes .ai-links line {
+            stroke: var(--ink);
+            stroke-width: 1.4;
+            opacity: 0.16;
+            stroke-dasharray: 60;
+            stroke-dashoffset: 60;
+            animation: aiLink 6.5s ease-in-out infinite;
+        }
+
+        .ai-nodes .ai-links line:nth-child(1) { animation-delay: 0s; }
+        .ai-nodes .ai-links line:nth-child(2) { animation-delay: 0.16s; }
+        .ai-nodes .ai-links line:nth-child(3) { animation-delay: 0.32s; }
+        .ai-nodes .ai-links line:nth-child(4) { animation-delay: 0.48s; }
+        .ai-nodes .ai-links line:nth-child(5) { animation-delay: 0.64s; }
+        .ai-nodes .ai-links line:nth-child(6) { animation-delay: 0.80s; }
+
+        @keyframes aiLink {
+            0%       { stroke-dashoffset: 60; opacity: 0; }
+            18%      { stroke-dashoffset: 0;  opacity: 0.22; }
+            76%      { stroke-dashoffset: 0;  opacity: 0.22; }
+            92%, 100% { stroke-dashoffset: 0; opacity: 0; }
+        }
+
+        .ai-nodes .ai-dots circle {
+            fill: var(--red);
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: aiDot 6.5s ease-in-out infinite;
+        }
+
+        .ai-nodes .ai-dots circle:nth-child(2) { fill: var(--blue);   animation-delay: 0.5s; }
+        .ai-nodes .ai-dots circle:nth-child(3) { fill: var(--ink);    animation-delay: 1.0s; }
+        .ai-nodes .ai-dots circle:nth-child(4) { fill: var(--red);    animation-delay: 1.5s; }
+        .ai-nodes .ai-dots circle:nth-child(5) { fill: var(--blue);   animation-delay: 2.0s; }
+        .ai-nodes .ai-dots circle:nth-child(6) { fill: var(--ink);    animation-delay: 2.5s; }
+
+        @keyframes aiDot {
+            0%       { transform: scale(0);   opacity: 0; }
+            12%      { transform: scale(1.5); opacity: 1; }
+            20%      { transform: scale(1);   opacity: 1; }
+            76%      { transform: scale(1);   opacity: 1; }
+            92%, 100% { transform: scale(0);  opacity: 0; }
+        }
+
+        @media (max-width: 640px) {
+            .ai-nodes { display: none; }
         }
 
         /* Rotating capability line under the hero lede. */
@@ -908,6 +1017,14 @@
 
         @media (prefers-reduced-motion: reduce) {
             .hero h1 .circle::after { animation: none; clip-path: none; }
+            .ai-word-text,
+            .ai-word::before,
+            .ai-nodes,
+            .ai-nodes .ai-links line,
+            .ai-nodes .ai-dots circle { animation: none; }
+            .ai-word::before { display: none; }
+            .ai-nodes .ai-links line { stroke-dashoffset: 0; opacity: 0.18; }
+            .ai-nodes .ai-dots circle { transform: scale(1); opacity: 1; }
             .ai-rotator-track { transition: none; }
             .ai-rotator .caret,
             .client-logo::after { animation: none; }
@@ -2773,7 +2890,7 @@
                     <span>AI-first studio · 3 build slots open for Q3</span>
                 </div>
                 <h1>
-                    We build with <span class="circle">AI</span><br>
+                    We build with <span class="circle ai-word"><span class="ai-word-text">AI</span><svg class="ai-nodes" viewBox="0 0 140 90" aria-hidden="true" focusable="false"><g class="ai-links"><line x1="18" y1="20" x2="70" y2="10"/><line x1="70" y1="10" x2="122" y2="24"/><line x1="122" y1="24" x2="112" y2="70"/><line x1="112" y1="70" x2="62" y2="82"/><line x1="62" y1="82" x2="14" y2="64"/><line x1="14" y1="64" x2="18" y2="20"/></g><g class="ai-dots"><circle cx="18" cy="20" r="4"/><circle cx="70" cy="10" r="3.4"/><circle cx="122" cy="24" r="4"/><circle cx="112" cy="70" r="3.4"/><circle cx="62" cy="82" r="4"/><circle cx="14" cy="64" r="3.4"/></g></svg></span><br>
                     so you ship <span class="highlight">faster</span>,<br>
                     rank higher, sell more.
                 </h1>
