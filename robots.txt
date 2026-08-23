@@ -1,0 +1,32 @@
+# robots.txt for Digicreature Technologies
+# https://digicreaturetechnologies.moneymindtool.com/
+# Last updated: 2026-08-23
+
+User-agent: *
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /*.json$
+Disallow: /assets/private/
+Disallow: /*?utm_
+Disallow: /*?fbclid=
+Disallow: /*?gclid=
+
+# Slow down aggressive crawlers
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Crawl-delay: 10
+
+# Block known bad bots
+User-agent: PetalBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Sitemap location
+Sitemap: https://digicreaturetechnologies.moneymindtool.com/sitemap.xml
