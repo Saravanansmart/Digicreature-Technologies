@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" fill="#FFFDF5"/>
+  <rect x="7" y="6" width="46" height="46" fill="#FFE83D" stroke="#0A0A0A" stroke-width="4"/>
+  <path d="M53 12v46H11" fill="none" stroke="#0A0A0A" stroke-width="4"/>
+  <text x="30" y="43" font-family="Archivo Black, Arial Black, Helvetica, sans-serif"
+        font-size="32" font-weight="900" text-anchor="middle" fill="#0A0A0A">D</text>
+</svg>
